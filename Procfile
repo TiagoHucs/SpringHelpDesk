@@ -1,1 +1,1 @@
-web: java -jar target/spring-boot-starter-parent-2.3.0.RELEASE.jar --spring.profiles.active=release
+web: java -jar target/helpdesk-0.0.1-SNAPSHOT.jar --spring.profiles.active=release
