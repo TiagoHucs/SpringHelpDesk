@@ -1,0 +1,12 @@
+<h2>Listar Chamados</h2>
+<div *ngIf="chamados">
+    <ul>
+       <li *ngFor="let chamado of chamados"  style="margin-bottom: 10px; cursor: pointer;">
+        <span [routerLink]="['/editar',chamado.id]">{{chamado.id}} - {{chamado.descricao}}</span>
+       </li> 
+    </ul>
+    <div *ngIf="chamados.length < 1">
+        Nenhum chamado cadastrado
+    </div>
+</div>
+<div [routerLink]="['/criar']">Criar chamado</div>

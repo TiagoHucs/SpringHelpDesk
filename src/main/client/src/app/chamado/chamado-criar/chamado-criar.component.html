@@ -1,0 +1,6 @@
+<h2>Criar Chamado</h2>
+<div [formGroup]="formChamado">
+    <label>Descrição do chamado</label><br>
+    <input class="form-control" formControlName="descricao" type="text-area"/>
+    <button class="btn btn-sm btn-primary pull-right" (click)="criar()">Criar</button>
+</div>

@@ -32,11 +32,10 @@ public class ChamadoService {
         repository.save(chamado);
     }
 
-    public void editar(ChamadoVO vo) {
-        Optional<Chamado> chamadoOp = repository.findById(vo.getId());
+    public Chamado obter(Long id) {
+        Optional<Chamado> chamadoOp = repository.findById(id);
         Chamado chamado = chamadoOp.get();
-        chamado.setStatus(EStatusChamado.ANDAMENTO);
-        repository.save(chamado);
+        return chamado;
     }
 
     public void encerrar(ChamadoVO vo) {
