@@ -1,14 +1,11 @@
 package com.hucs.helpdesk.negocio.chamado;
 
-import com.hucs.helpdesk.negocio.chamado.Chamado;
-import com.hucs.helpdesk.negocio.chamado.ChamadoVO;
-import com.hucs.helpdesk.negocio.chamado.EStatusChamado;
-import com.hucs.helpdesk.negocio.chamado.IChamadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -21,21 +18,16 @@ public class ChamadoService {
         return repository.findAll();
     }
 
-    public void criar(ChamadoVO vo) {
+    public void criar(Chamado c) {
         LocalDateTime agora = LocalDateTime.now();
-        Chamado chamado = Chamado.builder()
-                .status(EStatusChamado.ABERTO)
-                .dataHoraAbertura(agora)
-                .descricao(vo.getDescricao())
-                .build();
-
-        repository.save(chamado);
+        c.setDataHoraAbertura(agora);
+        c.setStatus(EStatusChamado.ABERTO);
+        repository.save(c);
     }
 
     public Chamado obter(Long id) {
-        Optional<Chamado> chamadoOp = repository.findById(id);
-        Chamado chamado = chamadoOp.get();
-        return chamado;
+        Optional<Chamado> op = repository.findById(id);
+        return op.get();
     }
 
     public void encerrar(ChamadoVO vo) {
