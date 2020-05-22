@@ -19,8 +19,7 @@ public class ChamadoService {
     }
 
     public void criar(Chamado c) {
-        LocalDateTime agora = LocalDateTime.now();
-        c.setDataHoraAbertura(agora);
+        c.setDataHoraAbertura(LocalDateTime.now());
         c.setStatus(EStatusChamado.ABERTO);
         repository.save(c);
     }
@@ -28,15 +27,6 @@ public class ChamadoService {
     public Chamado obter(Long id) {
         Optional<Chamado> op = repository.findById(id);
         return op.get();
-    }
-
-    public void encerrar(ChamadoVO vo) {
-        LocalDateTime agora = LocalDateTime.now();
-        Optional<Chamado> chamadoOp = repository.findById(vo.getId());
-        Chamado chamado = chamadoOp.get();
-        chamado.setStatus(EStatusChamado.FECHADO);
-        chamado.setDataHoraFechamento(agora);
-        repository.save(chamado);
     }
 
 }

@@ -21,32 +21,23 @@ public class ChamadoController {
     private MapperFacade mapper;
 
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
-    public ResponseEntity<List<ChamadoVO>> listar(){
-        List<ChamadoVO> lista = mapper.mapAsList(service.listar(),ChamadoVO.class);
+    public ResponseEntity<List<ChamadoVO>> listar() {
+        List<ChamadoVO> lista = mapper.mapAsList(service.listar(), ChamadoVO.class);
         return ResponseEntity.ok().body(lista);
-
     }
 
     @RequestMapping(value = "/criar", method = RequestMethod.POST)
     public ResponseEntity<Void> criar(@RequestBody ChamadoVO chamadoVO) {
-        Chamado chamado = mapper.map(chamadoVO,Chamado.class);
+        Chamado chamado = mapper.map(chamadoVO, Chamado.class);
         service.criar(chamado);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @RequestMapping(value = "/obter/{id}", method = RequestMethod.GET)
     public ResponseEntity<ChamadoVO> obter(@PathVariable Long id) {
-        try{
-            ChamadoVO chamadoVO = mapper.map(service.obter(id),ChamadoVO.class);
-            return ResponseEntity.ok().body(chamadoVO);
-        } catch (NoSuchElementException e){
-            throw new ResourceNotFoundException("Chamado não encontrado");
-        }
+        ChamadoVO chamadoVO = mapper.map(service.obter(id), ChamadoVO.class);
+        return ResponseEntity.ok().body(chamadoVO);
     }
 
-    @RequestMapping(value = "/encerrar", method = RequestMethod.POST)
-    public ResponseEntity<Void> encerrar(@RequestBody ChamadoVO vo) {
-        service.encerrar(vo);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
-    }
+
 }
