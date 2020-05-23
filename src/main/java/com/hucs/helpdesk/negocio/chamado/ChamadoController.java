@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/chamado")
+@RequestMapping("/rest/chamado")
 public class ChamadoController {
 
     @Autowired
