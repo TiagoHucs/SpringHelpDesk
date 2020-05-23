@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.HttpServletRequest;
 import java.util.NoSuchElementException;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class ResourceExceptionHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
