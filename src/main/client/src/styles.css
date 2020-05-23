@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: rgb(200, 200, 200)
+}
+
+label {
+    margin-bottom: -2px;
+    margin-top: 5px;;
+}

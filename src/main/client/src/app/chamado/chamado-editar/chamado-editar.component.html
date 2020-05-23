@@ -1,11 +1,31 @@
 <div *ngIf="recurso">
-    <h2>Editar Chamado {{recurso.id}}</h2>
+    <h2>Edição de chamado</h2>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">
+            Chamado {{recurso.chamadoVO.id}}
+            | Abertura: {{recurso.chamadoVO.dataHoraAbertura | date:'MM/dd/yy hh:mm:ss a'}}
+            <span *ngIf="recurso.chamadoVO.dataHoraFechamento">
+                Encerramento: {{recurso.chamadoVO.dataHoraFechamento}}
+            </span>
+        </li>
+    </ol>
     <div [formGroup]="formChamado">
-        <div>Abertura: {{recurso.dataHoraAbertura | date:'MM/dd/yy hh:mm:ss a'}}</div><br>
-        <div>Encerramento: {{recurso.dataHoraFechamento}}</div><br>
-        <div>Status: {{recurso.status}}</div><br>
-        <div>Descrição do chamado</div>
-        <input class="form-control" formControlName="descricao" type="text-area" /><br>
-        <button>Salvar</button>
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Status</label>
+                <select class="form-control" formControlName="status">
+                    <option *ngFor="let s of getStatusList()" value="{{s.codigo}}">{{s.descricao}}</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label>Descrição do chamado</label>
+                <input class="form-control" formControlName="descricao" type="text-area" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-primary" style="margin-top: 10px;" (click)="salvar()">Salvar</button>
+            </div>
+        </div>
     </div>
 </div>

@@ -34,9 +34,20 @@ public class ChamadoController {
     }
 
     @RequestMapping(value = "/obter/{id}", method = RequestMethod.GET)
-    public ResponseEntity<ChamadoVO> obter(@PathVariable Long id) {
+    public ResponseEntity<ChamadoEditarResource> obter(@PathVariable Long id) {
         ChamadoVO chamadoVO = mapper.map(service.obter(id), ChamadoVO.class);
-        return ResponseEntity.ok().body(chamadoVO);
+        List<StatusChamadoVO> statusList = service.getStatusList();
+        ChamadoEditarResource resource = ChamadoEditarResource.builder()
+                .chamadoVO(chamadoVO)
+                .statusList(statusList)
+                .build();
+        return ResponseEntity.ok().body(resource);
+    }
+
+    @RequestMapping(value = "/salvar", method = RequestMethod.POST)
+    public ResponseEntity<Void> salvar(@RequestBody ChamadoVO chamadoVO) {
+        service.salvar(chamadoVO);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
 

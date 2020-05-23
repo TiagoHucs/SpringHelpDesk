@@ -15,6 +15,6 @@ public class ChamadoVO {
     private LocalDateTime dataHoraAbertura;
     private LocalDateTime dataHoraFechamento;
     private String descricao;
-    private EStatusChamado status;
+    private String status;
 
 }

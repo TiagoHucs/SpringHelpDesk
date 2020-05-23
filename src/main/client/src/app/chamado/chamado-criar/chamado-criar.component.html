@@ -1,6 +1,19 @@
-<h2>Criar Chamado</h2>
+<h2>Criação de chamado</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">
+        Chamado será criado com status "aberto".
+    </li>
+</ol>
 <div [formGroup]="formChamado">
-    <label>Descrição do chamado</label><br>
-    <input class="form-control" formControlName="descricao" type="text-area"/>
-    <button class="btn btn-sm btn-primary pull-right" (click)="criar()">Criar</button>
+    <div class="row">
+        <div class="col-sm-12">
+            <label>Descrição do chamado</label><br>
+            <input class="form-control" formControlName="descricao" type="text-area"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <button class="btn btn-primary" style="margin-top: 10px;" (click)="criar()">Criar</button>
+        </div>
+    </div>
 </div>

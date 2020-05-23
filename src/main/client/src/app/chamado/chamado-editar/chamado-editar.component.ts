@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChamadoService } from '../chamado.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Chamado } from '../chamado';
+import { ChamadoEditarResource, ChamadoVO } from '../chamado';
 
 @Component({
   selector: 'app-chamado-editar',
@@ -10,7 +10,7 @@ import { Chamado } from '../chamado';
   styleUrls: ['./chamado-editar.component.css']
 })
 export class ChamadoEditarComponent implements OnInit {
-  recurso: Chamado;
+  recurso: ChamadoEditarResource;
   formChamado: FormGroup;
   
   constructor(
@@ -32,17 +32,32 @@ export class ChamadoEditarComponent implements OnInit {
   obterChamadoOriginal(id: string){
     this.service.obter(id).subscribe( res => {
       this.recurso = res;
-      this.criaFormulario(this.recurso)
+      this.criaFormulario(this.recurso.chamadoVO)
     });
   }
 
-  criaFormulario(chamado: Chamado){
+  getStatusList(){
+    return this.recurso.statusList;
+  }
+
+  criaFormulario(chamadoVO: ChamadoVO){
     this.formChamado = this.formBuilder.group({
-      id : [chamado.id],
-      descricao: [chamado.descricao, [Validators.required, Validators.maxLength(150)]],
-      dataHoraAbertura: [chamado.dataHoraAbertura],
-      dataHoraFechamento: [chamado.dataHoraFechamento],
-      status: [chamado.status],
+      id : [chamadoVO.id],
+      descricao: [chamadoVO.descricao, [Validators.required, Validators.maxLength(150)]],
+      dataHoraAbertura: [chamadoVO.dataHoraAbertura],
+      dataHoraFechamento: [chamadoVO.dataHoraFechamento],
+      status: [chamadoVO.status],
+    });
+  }
+
+  salvar(){
+    let vo = this.formChamado.getRawValue();
+    console.log(vo)
+    this.service.salvar(vo).subscribe( res => {
+      console.log('salvo com sucesso');
+      alert("Chamado alterado com sucesso");
+    }, error => {
+      alert(error);
     });
   }
 

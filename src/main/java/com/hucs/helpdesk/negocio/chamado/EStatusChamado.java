@@ -1,19 +1,36 @@
 package com.hucs.helpdesk.negocio.chamado;
 
+import lombok.Getter;
+
+@Getter
 public enum EStatusChamado {
 
-    ABERTO, ANDAMENTO , FECHADO ;
+    ABERTO  ("1", "Aberto"),
+    ANDAMENTO ("2", "Em andamento"),
+    FECHADO ("3", "Fechado");
 
-/*    ABERTO  (1, "Aberto"),
-    ANDAMENTO (2, "Em andamento"),
-    FECHADO (3, "Fechado");*/
-
-    /*private final int codigo;
+    private final String codigo;
     private final String descricao;
 
-    EStatusChamado(int codigo, String descricao) {
+    EStatusChamado(String codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
-    }*/
+    }
+
+    public StatusChamadoVO getStatusChamadoVO(){
+        return StatusChamadoVO.builder()
+                .codigo(this.getCodigo())
+                .descricao(this.getDescricao())
+                .build();
+    }
+
+    public static EStatusChamado getWithCodigo(String codigo){
+        for (EStatusChamado e :EStatusChamado.values()) {
+            if(e.getCodigo().equals(codigo)){
+                return e;
+            }
+        }
+        return null;
+    }
 
 }

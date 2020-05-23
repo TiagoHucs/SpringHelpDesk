@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ChamadoService {
@@ -29,4 +27,18 @@ public class ChamadoService {
         return op.get();
     }
 
+    protected List<StatusChamadoVO> getStatusList(){
+        List<StatusChamadoVO> list = new ArrayList<>();
+        for (EStatusChamado enums: EStatusChamado.values()) {
+            list.add(enums.getStatusChamadoVO());
+        }
+        return list;
+    }
+
+    public void salvar(ChamadoVO vo) {
+        Chamado original = obter(vo.getId());
+        original.setStatus(EStatusChamado.getWithCodigo(vo.getStatus()));
+        original.setDescricao(vo.getDescricao());
+        repository.save(original);
+    }
 }

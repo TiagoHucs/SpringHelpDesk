@@ -29,10 +29,10 @@ export class ChamadoCriarComponent implements OnInit {
 
   criar(){
     this.service.criar(this.formChamado.getRawValue()).subscribe( res => {
-      console.log('chamado criado')
+      alert("Chamado criado com sucesso");
       this.router.navigateByUrl('/listar');
     }, error => {
-      console.log(error)
+      alert(error);
     })
   }
 
