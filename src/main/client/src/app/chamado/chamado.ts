@@ -10,6 +10,13 @@ export class ChamadoVO {
     id: string;
     dataHoraAbertura: number;
     dataHoraFechamento: any;
-    status: string;
+    statusId: string;
+    status: StatusChamadoVO;
+    titulo: string;
+    descricao: string;
+}
+
+export class StatusChamadoVO {
+    codigo: string;
     descricao: string;
 }

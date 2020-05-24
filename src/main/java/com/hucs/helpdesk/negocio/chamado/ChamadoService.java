@@ -35,10 +35,11 @@ public class ChamadoService {
         return list;
     }
 
-    public void salvar(ChamadoVO vo) {
-        Chamado original = obter(vo.getId());
-        original.setStatus(EStatusChamado.getWithCodigo(vo.getStatus()));
-        original.setDescricao(vo.getDescricao());
+    public void salvar(Chamado alterado) {
+        Chamado original = obter(alterado.getId());
+        original.setStatus(alterado.getStatus());
+        original.setDescricao(alterado.getDescricao());
+        original.setTitulo(alterado.getTitulo());
         repository.save(original);
     }
 }

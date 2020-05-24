@@ -14,7 +14,9 @@ public class ChamadoVO {
     private Long id;
     private LocalDateTime dataHoraAbertura;
     private LocalDateTime dataHoraFechamento;
+    private String titulo;
     private String descricao;
-    private String status;
+    private String statusId;
+    private StatusChamadoVO status;
 
 }

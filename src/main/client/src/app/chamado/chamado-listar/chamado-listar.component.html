@@ -11,7 +11,7 @@
             <div class="col-sm-12">
                 <ul>
                     <li *ngFor="let chamado of chamados"  style="margin-bottom: 10px; cursor: pointer;">
-                     <span [routerLink]="['/editar',chamado.id]">{{chamado.id}} - {{chamado.descricao}}</span>
+                     <span [routerLink]="['/editar',chamado.id]">{{chamado.id}} - {{chamado.status.descricao}} - {{chamado.titulo}}</span>
                     </li> 
                  </ul>
                  <div *ngIf="chamados.length < 1">

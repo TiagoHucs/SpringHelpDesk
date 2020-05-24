@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @CrossOrigin
 @RestController
@@ -36,17 +36,17 @@ public class ChamadoController {
     @RequestMapping(value = "/obter/{id}", method = RequestMethod.GET)
     public ResponseEntity<ChamadoEditarResource> obter(@PathVariable Long id) {
         ChamadoVO chamadoVO = mapper.map(service.obter(id), ChamadoVO.class);
-        List<StatusChamadoVO> statusList = service.getStatusList();
         ChamadoEditarResource resource = ChamadoEditarResource.builder()
                 .chamadoVO(chamadoVO)
-                .statusList(statusList)
+                .statusList(mapper.mapAsList(EStatusChamado.valuesList(),StatusChamadoVO.class))
                 .build();
         return ResponseEntity.ok().body(resource);
     }
 
     @RequestMapping(value = "/salvar", method = RequestMethod.POST)
     public ResponseEntity<Void> salvar(@RequestBody ChamadoVO chamadoVO) {
-        service.salvar(chamadoVO);
+        Chamado chamado = mapper.map(chamadoVO,Chamado.class);
+        service.salvar(chamado);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 

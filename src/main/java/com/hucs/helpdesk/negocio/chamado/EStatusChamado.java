@@ -2,6 +2,9 @@ package com.hucs.helpdesk.negocio.chamado;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 public enum EStatusChamado {
 
@@ -31,6 +34,14 @@ public enum EStatusChamado {
             }
         }
         return null;
+    }
+
+    public static List<EStatusChamado> valuesList(){
+        List<EStatusChamado> list = new ArrayList<>();
+        for (EStatusChamado e :EStatusChamado.values()) {
+            list.add(e);
+        }
+        return list;
     }
 
 }

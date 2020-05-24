@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChamadoService } from '../chamado.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ChamadoEditarResource, ChamadoVO } from '../chamado';
+import { ChamadoEditarResource, ChamadoVO, StatusChamadoVO } from '../chamado';
 
 @Component({
   selector: 'app-chamado-editar',
@@ -12,6 +12,7 @@ import { ChamadoEditarResource, ChamadoVO } from '../chamado';
 export class ChamadoEditarComponent implements OnInit {
   recurso: ChamadoEditarResource;
   formChamado: FormGroup;
+  maxDescription: number = 250;
   
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +34,9 @@ export class ChamadoEditarComponent implements OnInit {
     this.service.obter(id).subscribe( res => {
       this.recurso = res;
       this.criaFormulario(this.recurso.chamadoVO)
+    }, err => {
+      console.log(err.error);
+      alert(err.error.msg)
     });
   }
 
@@ -43,22 +47,28 @@ export class ChamadoEditarComponent implements OnInit {
   criaFormulario(chamadoVO: ChamadoVO){
     this.formChamado = this.formBuilder.group({
       id : [chamadoVO.id],
-      descricao: [chamadoVO.descricao, [Validators.required, Validators.maxLength(150)]],
+      titulo: [chamadoVO.titulo, [Validators.required, Validators.maxLength(50)]],
+      descricao: [chamadoVO.descricao, [Validators.required, Validators.maxLength(250)]],
       dataHoraAbertura: [chamadoVO.dataHoraAbertura],
       dataHoraFechamento: [chamadoVO.dataHoraFechamento],
-      status: [chamadoVO.status],
+      statusId: [chamadoVO.statusId],
     });
   }
 
   salvar(){
     let vo = this.formChamado.getRawValue();
-    console.log(vo)
     this.service.salvar(vo).subscribe( res => {
       console.log('salvo com sucesso');
       alert("Chamado alterado com sucesso");
     }, error => {
       alert(error);
     });
+  }
+
+
+
+  charsLeft(){
+    return this.maxDescription - this.formChamado.controls['descricao'].value.length;
   }
 
 }

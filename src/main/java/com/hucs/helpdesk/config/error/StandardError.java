@@ -1,4 +1,4 @@
-package com.hucs.helpdesk.error;
+package com.hucs.helpdesk.config.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.hucs.helpdesk.config;
+package com.hucs.helpdesk.config.orika;
 
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;

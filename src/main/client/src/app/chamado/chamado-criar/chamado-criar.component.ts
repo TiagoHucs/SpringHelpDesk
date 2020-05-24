@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ChamadoCriarComponent implements OnInit {
   formChamado: FormGroup;
+  maxDescription: number = 250;
   
   constructor(
     private router: Router,
@@ -23,8 +24,13 @@ export class ChamadoCriarComponent implements OnInit {
 
   criaFormulario(){
     this.formChamado = this.formBuilder.group({
-      descricao: ['', [Validators.required, Validators.maxLength(150)]]
+      titulo: ['', [Validators.required, Validators.maxLength(50)]],
+      descricao: ['', [Validators.required, Validators.maxLength(this.maxDescription)]]
     });
+  }
+
+  charsLeft(){
+    return this.maxDescription - this.formChamado.controls['descricao'].value.length;
   }
 
   criar(){

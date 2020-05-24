@@ -28,6 +28,9 @@ public class Chamado {
     @Column(name = "CHA_DH_FECHAMENTO", insertable = true, updatable = true)
     private LocalDateTime dataHoraFechamento;
 
+    @Column(name = "CHA_DS_TITULO")
+    private String titulo;
+
     @Column(name = "CHA_DS_DESCRICAO")
     private String descricao;
 

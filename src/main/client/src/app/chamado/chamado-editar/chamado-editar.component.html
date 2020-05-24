@@ -13,13 +13,18 @@
         <div class="row">
             <div class="col-sm-6">
                 <label>Status</label>
-                <select class="form-control" formControlName="status">
+                <select class="form-control" formControlName="statusId">
                     <option *ngFor="let s of getStatusList()" value="{{s.codigo}}">{{s.descricao}}</option>
                 </select>
             </div>
             <div class="col-sm-6">
-                <label>Descrição do chamado</label>
-                <input class="form-control" formControlName="descricao" type="text-area" />
+                <label>Titulo do chamado</label>
+                <input class="form-control" formControlName="titulo" type="text-area"/>
+            </div>
+            <div class="col-sm-12">
+                <label>Descrição do chamado</label><br>
+                <textarea class="form-control" maxlength="{{maxDescription}}" class="form-control" formControlName="descricao"></textarea>
+                <div class="text-right">restam {{charsLeft()}} caracteres</div>
             </div>
         </div>
         <div class="row">
