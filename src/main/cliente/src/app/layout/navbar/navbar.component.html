@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark" style="color: white;">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">
+        <img src="assets/logo.png" width="50%">
+    </a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                <a class="nav-link" [routerLink]="['/chamados/criar']">Criar</a>
+            </li>
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                <a class="nav-link" [routerLink]="['/chamados/listar']">listar</a>
+            </li>
+        </ul>
+    </div>
+</nav>
