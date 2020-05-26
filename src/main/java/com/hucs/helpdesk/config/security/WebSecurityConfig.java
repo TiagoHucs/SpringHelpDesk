@@ -19,9 +19,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-//import com.hucs.security.jwt.JwtAuthenticationEntryPoint;
-//import com.hucs.security.jwt.JwtAuthenticationTokenFilter;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -62,48 +59,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests()
-                .antMatchers(
-                        HttpMethod.GET,
-                        "/",
+		httpSecurity.csrf().disable()
+				.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.authorizeRequests()
+				.antMatchers(
+						HttpMethod.GET,
+						"/",
 						"/*.js",
-                        "/*.html",
-                        "/favicon.ico",
-                        "/**/*.html",
-                        "/**/*.css","/**/*.js",
+						"/*.html",
+						"/favicon.ico",
+						"/**/*.html",
+						"/**/*.css", "/**/*.js",
 						"/assets/*.*"
-                ).permitAll()
-				//.antMatchers("/rest/**").permitAll()//TODO: remover depois da impl segur
+				).permitAll()
 				.antMatchers("/fontawesome*").permitAll()
-                .antMatchers("/rest/auth/**").permitAll()
+				.antMatchers("/rest/auth/**").permitAll()
 				.antMatchers("/rest/refresh/**").permitAll()
 				.antMatchers("/rest/usuario/cadastrar").permitAll()
 				.antMatchers("/h2/**").permitAll()
-                .anyRequest().authenticated();
+				.anyRequest().authenticated();
 
-        httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+		httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 
-        // habilita frames para consuta h2 local
-		//List<Object> profile = Arrays.asList(env.getActiveProfiles());
-		//if (profile.get(0).equals("dev")) {
-		if (true) {
-			httpSecurity.headers().frameOptions().disable().cacheControl();
-		} else {
-			httpSecurity.headers().cacheControl();
+		// habilita frames para consuta h2 local
+		List<Object> profile = Arrays.asList(env.getActiveProfiles());
+		if (profile.get(0).equals("dev")) {
+			if (true) {
+				httpSecurity.headers().frameOptions().disable().cacheControl();
+			} else {
+				httpSecurity.headers().cacheControl();
+			}
+
 		}
-
-    }
-
-/*	@Override
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-				.withUser("usuario")
-				.password("123456")
-				.roles("USUARIO");
-	}*/
-
-
+	}
 }

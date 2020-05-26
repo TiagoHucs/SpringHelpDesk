@@ -71,14 +71,8 @@ export class LoginComponent implements OnInit {
   }
 
   setUsuario() {
-    this.user.email = 'usuario@system.com';
-    this.user.password = '112233';
-    console.log(this.user)
+    this.formLogin.controls['email'].setValue('usuario@gmail.com');
+    this.formLogin.controls['password'].setValue('123456');
   }
 
-  setAdmin() {
-    this.user.email = 'admin@system.com';
-    this.user.password = '123456';
-    console.log(this.user)
-  }
 }

@@ -13,9 +13,14 @@ import { UserService } from './security/usuario.service';
 import { AuthGuard } from './security/auth.guard';
 import { RoleGuardService } from './security/role.guard.service';
 import { AuthService } from './security/auth.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from './security/auth.interceptor';
+
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -29,7 +34,14 @@ import { AuthInterceptor } from './security/auth.interceptor';
     ReactiveFormsModule,
     SecurityModule,
     LayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['example.com'],
+        blacklistedRoutes: ['example.com/examplebadroute/']
+      }
+    })
   ],
   providers: [
     UserService, 
