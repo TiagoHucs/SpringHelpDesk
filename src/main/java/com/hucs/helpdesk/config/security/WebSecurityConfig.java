@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/rest/**").permitAll()//TODO: remover depois da impl segur
 				.antMatchers("/fontawesome*").permitAll()
                 .antMatchers("/api/auth/**").permitAll()
-				.antMatchers("/user/cadastrar").permitAll()
+				.antMatchers("/rest/usuario/cadastrar").permitAll()
 				.antMatchers("/h2/**").permitAll()
                 .anyRequest().authenticated();
 

@@ -1,7 +1,7 @@
 package com.hucs.helpdesk.config.jwt;
 
-import com.hucs.helpdesk.negocio.usuario.UserService;
 import com.hucs.helpdesk.negocio.usuario.Usuario;
+import com.hucs.helpdesk.negocio.usuario.UsuarioService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class JwtUserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserService userService;
+    private UsuarioService userService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{

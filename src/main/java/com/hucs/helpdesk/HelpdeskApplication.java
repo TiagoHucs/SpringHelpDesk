@@ -2,8 +2,8 @@ package com.hucs.helpdesk;
 
 import com.hucs.helpdesk.negocio.usuario.EProfile;
 import com.hucs.helpdesk.negocio.usuario.IUsuarioRepository;
-import com.hucs.helpdesk.negocio.usuario.UserService;
 import com.hucs.helpdesk.negocio.usuario.Usuario;
+import com.hucs.helpdesk.negocio.usuario.UsuarioService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,16 +26,16 @@ public class HelpdeskApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(IUsuarioRepository userRepository, UserService userService, PasswordEncoder passwordEncoder) {
+	CommandLineRunner init(IUsuarioRepository userRepository, UsuarioService usuarioService, PasswordEncoder passwordEncoder) {
 		return args -> {
 			//if("dev".equals(System.getProperty("spring.profiles.active"))){
 			if(true){
-				initUsers(userRepository,userService, passwordEncoder);
+				initUsers(userRepository,usuarioService, passwordEncoder);
 			}
 		};
 	}
 
-	private void initUsers(IUsuarioRepository userRepository, UserService userService, PasswordEncoder passwordEncoder) {
+	private void initUsers(IUsuarioRepository userRepository, UsuarioService usuarioService, PasswordEncoder passwordEncoder) {
 		Usuario admin = new Usuario();
 		admin.setEmail("usuario@gmail.com");
 		admin.setPassword(passwordEncoder.encode("123456"));
@@ -43,7 +43,7 @@ public class HelpdeskApplication {
 
 		Usuario find = userRepository.findByEmail("tiagohucs@gmail.com");
 		if (find == null) {
-			userService.createOrUpdate(admin);
+			usuarioService.createOrUpdate(admin);
 		}
 	}
 
