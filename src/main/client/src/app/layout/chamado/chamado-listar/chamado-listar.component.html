@@ -1,0 +1,28 @@
+
+<div *ngIf="chamados">
+    <h4>Listar Chamados</h4>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">
+            Lista de chamados
+        </li>
+    </ol>
+    <div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ul>
+                    <li *ngFor="let chamado of chamados"  style="margin-bottom: 10px; cursor: pointer;">
+                     <span [routerLink]="['/chamados/editar',chamado.id]">{{chamado.id}} - {{chamado.status.descricao}} - {{chamado.titulo}}</span>
+                    </li> 
+                 </ul>
+                 <div *ngIf="chamados.length < 1">
+                    Nenhum chamado cadastrado
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-primary" style="margin-top: 10px;" [routerLink]="['/chamados/criar']">Criar novo chamado</button>
+            </div>
+        </div>
+    </div>
+</div>
