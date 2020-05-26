@@ -1,0 +1,36 @@
+<div *ngIf="recurso">
+    <h4>Edição de chamado</h4>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">
+            Chamado {{recurso.chamadoVO.id}}
+            | Abertura: {{recurso.chamadoVO.dataHoraAbertura | date:'MM/dd/yy hh:mm:ss a'}}
+            <span *ngIf="recurso.chamadoVO.dataHoraFechamento">
+                Encerramento: {{recurso.chamadoVO.dataHoraFechamento}}
+            </span>
+        </li>
+    </ol>
+    <div [formGroup]="formChamado">
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Status</label>
+                <select class="form-control" formControlName="statusId">
+                    <option *ngFor="let s of getStatusList()" value="{{s.codigo}}">{{s.descricao}}</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label>Titulo do chamado</label>
+                <input class="form-control" formControlName="titulo" type="text-area"/>
+            </div>
+            <div class="col-sm-12">
+                <label>Descrição do chamado</label><br>
+                <textarea class="form-control" maxlength="{{maxDescription}}" class="form-control" formControlName="descricao"></textarea>
+                <div class="text-right">restam {{charsLeft()}} caracteres</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-primary" style="margin-top: 10px;" (click)="salvar()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
