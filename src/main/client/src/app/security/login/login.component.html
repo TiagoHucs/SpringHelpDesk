@@ -4,7 +4,9 @@
             <div class="col-lg-5">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                     <div class="card-header">
-                        <h3 class="text-center font-weight-light my-4">Login</h3>
+                        <h3 class="text-center font-weight-light my-4">
+                            <img src="assets/logo.png" width="30px" style="margin-right: 10px;"/> <b>HELP DESK</b>
+                        </h3>
                     </div>
                     <div class="card-body" [formGroup]="formLogin">
 
@@ -21,13 +23,16 @@
                                     password</label>
                             </div>
                         </div>
-                        <div class="form-group text-right">
+                        <div class="form-group text-center">
                             <button class="btn btn-primary" (click)="login()">Login</button>
                         </div>
 
                     </div>
                     <div class="card-footer text-center">
                         <div class="btn btn-primary" (click)="setUsuario()">Usar usuario de teste</div>
+                    </div>
+                    <div class="text-center" style="color: gray; margin-bottom: 10px;">
+                        by tiagohucs@gmail.com
                     </div>
                 </div>
             </div>

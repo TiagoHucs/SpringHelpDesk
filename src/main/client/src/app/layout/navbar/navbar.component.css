@@ -2,10 +2,6 @@
     cursor: pointer;
 }
 
-.tit{
-    color: rgb(0, 119, 255);
-}
-
 .linha{
     background-color: rgb(0, 119, 255);
     height: 2px;

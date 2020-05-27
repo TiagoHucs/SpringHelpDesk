@@ -2,3 +2,8 @@
 body{
     background-color: rgb(200, 200, 200);
 }
+
+.tit{
+    color: rgb(0, 119, 255);
+    font-weight: bold;
+}
