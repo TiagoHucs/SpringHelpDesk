@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/security/auth.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import decode from 'jwt-decode';
-import { UserService } from 'src/app/security/usuario.service';
+import { UserService } from '../../security/usuario.service';
+import { AuthService } from '../../security/auth.service';
 
 @Component({
   selector: 'app-navbar',

@@ -1,28 +1,43 @@
-
 <div *ngIf="chamados">
-    <h4>Listar Chamados</h4>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">
-            Lista de chamados
+            <b>Chamados cadastrados</b>
         </li>
     </ol>
-    <div>
-        <div class="row">
-            <div class="col-sm-12">
-                <ul>
-                    <li *ngFor="let chamado of chamados"  style="margin-bottom: 10px; cursor: pointer;">
-                     <span [routerLink]="['/chamados/editar',chamado.id]">{{chamado.id}} - {{chamado.status.descricao}} - {{chamado.titulo}}</span>
-                    </li> 
-                 </ul>
-                 <div *ngIf="chamados.length < 1">
+    <div *ngIf="!chamados.length < 1" class="table-responsive ">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Numero</th>
+                    <th>Título</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let chamado of chamados">
+                    <td>{{chamado.id}}</td>
+                    <td>{{chamado.titulo}}</td>
+                    <td>
+                        <span class="badge" [ngClass]="getClass(chamado.status.codigo)">{{chamado.status.descricao}}</span>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-primary"
+                            [routerLink]="['/chamados/editar',chamado.id]">Editar</button>
+                    </td>
+                </tr>
+                <div *ngIf="chamados.length < 1">
                     Nenhum chamado cadastrado
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 text-right">
-                <button class="btn btn-primary" style="margin-top: 10px;" [routerLink]="['/chamados/criar']">Criar novo chamado</button>
-            </div>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <button class="btn btn-primary" style="margin-top: 10px;" [routerLink]="['/chamados/criar']">Criar novo
+                chamado</button>
         </div>
     </div>
+
 </div>

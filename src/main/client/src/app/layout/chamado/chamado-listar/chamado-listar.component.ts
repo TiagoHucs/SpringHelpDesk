@@ -18,4 +18,8 @@ export class ChamadoListarComponent implements OnInit {
     })
   }
 
+  getClass(codigo: string){
+    return codigo == '1' ? 'aberto' : codigo == '2' ? 'andamento' : 'fechado';
+  }
+
 }

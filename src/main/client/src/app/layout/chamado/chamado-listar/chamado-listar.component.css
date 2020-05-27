@@ -1,0 +1,14 @@
+.aberto{
+    background-color: gray;
+    color: white;
+}
+
+.fechado{
+    background-color: green;
+    color: white;
+}
+
+.andamento {
+    background-color: yellow;
+    color: black;
+}
