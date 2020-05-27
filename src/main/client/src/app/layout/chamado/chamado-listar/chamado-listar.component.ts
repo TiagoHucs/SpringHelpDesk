@@ -14,12 +14,15 @@ export class ChamadoListarComponent implements OnInit {
   ngOnInit() {
     this.service.listar().subscribe( res => {
       this.chamados = res;
-      this.chamados.length < 1;
     })
   }
 
   getClass(codigo: string){
     return codigo == '1' ? 'aberto' : codigo == '2' ? 'andamento' : 'fechado';
+  }
+
+  temChamados(){
+    this.chamados.length > 0
   }
 
 }

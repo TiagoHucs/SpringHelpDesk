@@ -4,7 +4,7 @@
             <b>Chamados cadastrados</b>
         </li>
     </ol>
-    <div *ngIf="!chamados.length < 1" class="table-responsive ">
+    <div *ngIf="temChamados()" class="table-responsive ">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -26,7 +26,7 @@
                             [routerLink]="['/chamados/editar',chamado.id]">Editar</button>
                     </td>
                 </tr>
-                <div *ngIf="chamados.length < 1">
+                <div *ngIf="!temChamados()">
                     Nenhum chamado cadastrado
                 </div>
             </tbody>
