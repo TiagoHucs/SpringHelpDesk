@@ -22,7 +22,7 @@ export class ChamadoListarComponent implements OnInit {
   }
 
   temChamados(){
-    this.chamados.length > 0
+    return this.chamados.length > 0;
   }
 
 }
