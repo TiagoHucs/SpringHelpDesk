@@ -2,7 +2,7 @@ package com.hucs.helpdesk.negocio.usuario;
 
 public enum EProfile {
 
-    ADMIN,
+    GESTOR,
     USUARIO,
     TECNICO;
 }

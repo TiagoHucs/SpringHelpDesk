@@ -36,16 +36,33 @@ public class HelpdeskApplication {
 	}
 
 	private void initUsers(IUsuarioRepository userRepository, UsuarioService usuarioService, PasswordEncoder passwordEncoder) {
-		Usuario admin = new Usuario();
-		admin.setEmail("usuario@gmail.com");
-		admin.setPassword(passwordEncoder.encode("123456"));
-		admin.setProfile(EProfile.ADMIN);
 
-		Usuario find = userRepository.findByEmail("tiagohucs@gmail.com");
-		if (find == null) {
-			usuarioService.createOrUpdate(admin);
+		if(userRepository.findByEmail("usuario@gmail.com") == null){
+			Usuario usuario = new Usuario();
+			usuario.setEmail("usuario@gmail.com");
+			usuario.setPassword(passwordEncoder.encode("123456"));
+			usuario.setProfile(EProfile.USUARIO);
+			usuarioService.createOrUpdate(usuario);
 		}
-	}
 
+		if(userRepository.findByEmail("tecnico@gmail.com") == null){
+			Usuario usuario = new Usuario();
+			usuario.setEmail("tecnico@gmail.com");
+			usuario.setPassword(passwordEncoder.encode("123456"));
+			usuario.setProfile(EProfile.TECNICO);
+			usuarioService.createOrUpdate(usuario);
+		}
+
+		if(userRepository.findByEmail("gestor@gmail.com") == null){
+			Usuario usuario = new Usuario();
+			usuario.setEmail("gestor@gmail.com");
+			usuario.setPassword(passwordEncoder.encode("123456"));
+			usuario.setProfile(EProfile.GESTOR);
+			usuarioService.createOrUpdate(usuario);
+		}
+
+
+
+	}
 
 }
