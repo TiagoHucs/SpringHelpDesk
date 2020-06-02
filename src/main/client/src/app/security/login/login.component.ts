@@ -70,8 +70,8 @@ export class LoginComponent implements OnInit {
     };
   }
 
-  setUsuario() {
-    this.formLogin.controls['email'].setValue('usuario@gmail.com');
+  setLogin(txt: string) {
+    this.formLogin.controls['email'].setValue(txt +'@gmail.com');
     this.formLogin.controls['password'].setValue('123456');
   }
 

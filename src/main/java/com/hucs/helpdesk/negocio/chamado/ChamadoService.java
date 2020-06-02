@@ -1,5 +1,6 @@
 package com.hucs.helpdesk.negocio.chamado;
 
+import com.hucs.helpdesk.negocio.log.LogExecutionTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ public class ChamadoService {
     @Autowired
     private IChamadoRepository repository;
 
+    @LogExecutionTime("Listar chamados")
     public List<Chamado> listar() {
         return repository.findAll();
     }
