@@ -70,11 +70,9 @@ $ npm run start
 ```
 
 
-## 📝 Licença
+## 📝 Autoria
 
-Este projeto esta sobe a licença MIT. Veja a [LICENÇA](license) para saber mais.
-
-Feito com ❤️ por Tiago S. Hucs 👋🏽 [Entre em contato!](https://www.linkedin.com/in/tiagohucs/)
+Feito por Tiago S. Hucs 👋🏽 [Entre em contato!](https://www.linkedin.com/in/tiagohucs/)
 
 [spring]: https://spring.io/
 [angular]: https://angular.io/
