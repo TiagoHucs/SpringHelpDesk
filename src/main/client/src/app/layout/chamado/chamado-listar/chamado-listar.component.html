@@ -23,7 +23,9 @@
                     </td>
                     <td>
                         <button class="btn btn-sm btn-primary"
-                            [routerLink]="['/chamados/editar',chamado.id]">Editar</button>
+                            [routerLink]="['/chamados/editar',chamado.id]">
+                            <i class="fa fa-pencil"></i> Editar
+                        </button>
                     </td>
                 </tr>
                 <div *ngIf="!temChamados()">
@@ -35,8 +37,9 @@
 
     <div class="row">
         <div class="col-sm-12 text-right">
-            <button class="btn btn-primary" style="margin-top: 10px;" [routerLink]="['/chamados/criar']">Criar novo
-                chamado</button>
+            <button class="btn btn-primary" style="margin-top: 10px;" 
+            [routerLink]="['/chamados/criar']">
+            <i class="fa fa-plus"></i> Criar novo chamado</button>
         </div>
     </div>
 

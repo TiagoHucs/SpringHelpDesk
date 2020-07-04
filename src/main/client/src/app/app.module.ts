@@ -16,6 +16,7 @@ import { AuthService } from './security/auth.service';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from './security/auth.interceptor';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 
 export function tokenGetter() {
@@ -35,6 +36,7 @@ export function tokenGetter() {
     SecurityModule,
     LayoutModule,
     HttpClientModule,
+    SnotifyModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -50,6 +52,8 @@ export function tokenGetter() {
     AuthService,
     JwtHelperService,
     CookieService,
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+    SnotifyService,
     {
       provide: LOCALE_ID,
       useValue: "en-US"

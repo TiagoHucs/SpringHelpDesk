@@ -3,6 +3,7 @@ import { ChamadoService } from '../chamado.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ChamadoEditarResource, ChamadoVO, StatusChamadoVO } from '../chamado';
+import { SnotifyService } from 'ng-snotify';
 
 @Component({
   selector: 'app-chamado-editar',
@@ -17,7 +18,8 @@ export class ChamadoEditarComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: ChamadoService,
-    private formBuilder: FormBuilder) { 
+    private formBuilder: FormBuilder,
+    private snotifyService: SnotifyService) { 
   }
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class ChamadoEditarComponent implements OnInit {
       this.criaFormulario(this.recurso.chamadoVO)
     }, err => {
       console.log(err.error);
-      alert(err.error.msg)
+      this.snotifyService.error(err.error.msg);
     });
   }
 
@@ -58,10 +60,9 @@ export class ChamadoEditarComponent implements OnInit {
   salvar(){
     let vo = this.formChamado.getRawValue();
     this.service.salvar(vo).subscribe( res => {
-      console.log('salvo com sucesso');
-      alert("Chamado alterado com sucesso");
+      this.snotifyService.success('Chamado alterado com sucesso');
     }, error => {
-      alert(error);
+      this.snotifyService.error(error);
     });
   }
 
