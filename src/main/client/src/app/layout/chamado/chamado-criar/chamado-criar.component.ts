@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChamadoService } from '../chamado.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SnotifyStyle, SnotifyService } from 'ng-snotify';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-chamado-criar',
@@ -17,7 +17,7 @@ export class ChamadoCriarComponent implements OnInit {
     private router: Router,
     private service: ChamadoService,
     private formBuilder: FormBuilder,
-    private snotifyService: SnotifyService) { 
+    private notifierService: NotifierService) { 
   }
 
   ngOnInit() {
@@ -38,9 +38,9 @@ export class ChamadoCriarComponent implements OnInit {
   criar(){
     this.service.criar(this.formChamado.getRawValue()).subscribe( res => {
       this.router.navigateByUrl('/chamados/listar');
-      this.snotifyService.success('Chamado criado com sucesso');
+      this.notifierService.notify("success","Chamado criado com sucesso");
     }, error => {
-      this.snotifyService.error('Erro ao criar chamado');
+      this.notifierService.notify("error","Erro ao criar chamado");
     })
   }
 
