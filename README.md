@@ -2,7 +2,8 @@
 
 ## 💻 Sobre o projeto
 
-Este projeto é uma demostração de um Help Desk básico onde podemos criar, manter, monitorar e atender chamados
+Este projeto é uma demostração de um Help Desk básico onde podemos criar, manter, monitorar e atender chamados.
+Versão de demonstração pode ser acessada  [aqui][linkDemo]. 
 
 Empresa e usuario podem
 - Criar um chamado
@@ -76,3 +77,4 @@ Feito por Tiago S. Hucs 👋🏽 [Entre em contato!](https://www.linkedin.com/in
 
 [spring]: https://spring.io/
 [angular]: https://angular.io/
+[linkDemo]: https://hucs-helpdesk.herokuapp.com/
